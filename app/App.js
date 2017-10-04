@@ -31,21 +31,32 @@ export class App extends Component {
         console.log("THE VALUE PASSED IN: ", aValue);
         //construct url
         let url = "https://dog.ceo/api/breed/"+aValue+"/images";
-
-        let task = RNFetchBlob.fetch('GET', url);
         let temp = null;
 
-        task.then((response) => {
-            // .. success
-            let temp = JSON.parse(response.data);
-            console.log("DATA: ", temp.message);
+        //baic setup to make API call
+        let task = RNFetchBlob.fetch('GET', url);
 
+        //make the API call
+        task.then((response) => {
+            // on success
+
+            //converts the response from string to JSON
+            let temp = JSON.parse(response.data);
+            // console.log("DATA: ", temp.message);
+
+            //updates the dogInfo state
             this.setState({
                 dogInfo: temp.message
             });
 
         }).catch((err) => {
-                console.log(err)
+            //on failure
+            console.log(err);
+
+            //updates the dogInfo state
+            this.setState({
+                dogInfo: null
+            });
         });
     }
 
@@ -56,6 +67,7 @@ export class App extends Component {
                     <Text>
                         Make Selection
                     </Text>
+
                     <Picker
                         selectedValue={this.state.language}
                         onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
@@ -71,7 +83,7 @@ export class App extends Component {
                     <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.language)}>
                         <View>
                             <Text>
-                                MAKE CALL
+                                SHOW DOGS
                             </Text>
                         </View>
                     </TouchableHighlight>
@@ -81,10 +93,11 @@ export class App extends Component {
                         onChangeText={(text) => this.setState({textValue: text})}
                         value={this.state.textValue}
                     />
+
                     <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.textValue)}>
                         <View>
                             <Text>
-                                MAKE CALL
+                                SHOW DOGS
                             </Text>
                         </View>
                     </TouchableHighlight>
@@ -92,6 +105,9 @@ export class App extends Component {
 
                     <ScrollView
                     horizontal={true}>
+
+                        {/*conditional rendering: if there is dogInfo, it shows all the images, otherwise if dogInfo
+                        is null or false, it shows that there is no info*/}
                     {this.state.dogInfo ?
                         this.state.dogInfo.map((item, index) => {
                             return(
