@@ -9,6 +9,7 @@ import {
     View,
     ScrollView,
     Picker,
+    Button
 } from 'react-native';
 
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -25,15 +26,15 @@ export class App extends Component {
     }
 
     render() {
-        let task = RNFetchBlob.fetch('GET', 'https://jsonplaceholder.typicode.com/posts/');
-
-        task.then((response) => {
-            // .. success
-            console.log("data", response.data);
-        })
-            .catch((err) => {
-                console.log(err)
-            });
+        // let task = RNFetchBlob.fetch('GET', 'https://dog.ceo/api/breeds/list/all');
+        //
+        // task.then((response) => {
+        //     // .. success
+        //     console.log("data", response.data);
+        // })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     });
 
 
         return (
@@ -56,7 +57,12 @@ export class App extends Component {
                         <Picker.Item label="husky" value="husky" />
                         <Picker.Item label="pug" value="pug" />
                     </Picker>
-
+                    <Button
+                        onPress={this.onPressLearnMore}
+                        title="Learn More"
+                        color="#841584"
+                        accessibilityLabel="Learn more about this purple button"
+                    />
                     <TextInput
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                         onChangeText={(text) => this.setState({textValue: text})}
@@ -65,6 +71,10 @@ export class App extends Component {
                 </ScrollView>
             </View>
         );
+    }
+
+    onPressLearnMore(){
+        console.log("look");
     }
 }
 
