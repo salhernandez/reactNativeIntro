@@ -9,7 +9,8 @@ import {
     View,
     ScrollView,
     Picker,
-    Button
+    Button,
+    TouchableHighlight
 } from 'react-native';
 
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -21,22 +22,33 @@ export class App extends Component {
 
         this.state = {
             language: 'java',
-            textValue: '1'
+            textValue: '1',
+            dogInfo: null
         }
+
+        // this.onPressLearnMore = this.onPressLearnMore.bind(this)
+    }
+
+    onPressLearnMore(){
+        console.log("look");
+        let task = RNFetchBlob.fetch('GET', 'https://dog.ceo/api/breeds/list/all');
+        let temp = null;
+
+        task.then((response) => {
+            // .. success
+            console.log("data", response.data);
+            temp = response.data;
+        })
+            .catch((err) => {
+                console.log(err)
+            });
+
+        this.setState({
+            dogInfo: "yarp"
+        });
     }
 
     render() {
-        // let task = RNFetchBlob.fetch('GET', 'https://dog.ceo/api/breeds/list/all');
-        //
-        // task.then((response) => {
-        //     // .. success
-        //     console.log("data", response.data);
-        // })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     });
-
-
         return (
             <View>
                 <ScrollView>
@@ -57,30 +69,35 @@ export class App extends Component {
                         <Picker.Item label="husky" value="husky" />
                         <Picker.Item label="pug" value="pug" />
                     </Picker>
-                    <Button
-                        onPress={this.onPressLearnMore}
-                        title="Learn More"
-                        color="#841584"
-                        accessibilityLabel="Learn more about this purple button"
-                    />
+
+                    <TouchableHighlight onPress={() => this.onPressLearnMore()}>
+                        <View>
+                            <Text>
+                                MAKE CALL
+                            </Text>
+                        </View>
+                    </TouchableHighlight>
+
                     <TextInput
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                         onChangeText={(text) => this.setState({textValue: text})}
                         value={this.state.textValue}
                     />
+                    <TouchableHighlight onPress={() => this.onPressLearnMore()}>
+                        <View>
+                            <Text>
+                                MAKE CALL
+                            </Text>
+                        </View>
+                    </TouchableHighlight>
+
+                    {this.state.dogInfo ? <Text>
+                        THERE'S DOG INFO
+                    </Text>:
+                        null}
                 </ScrollView>
             </View>
         );
-    }
-
-    onPressLearnMore(){
-        console.log("look");
-    }
-}
-
-function mapStateToProps(state,component) {
-    return {
-        user: state.user,
     }
 }
 
