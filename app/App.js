@@ -10,7 +10,8 @@ import {
     ScrollView,
     Picker,
     Button,
-    TouchableHighlight
+    TouchableHighlight,
+    Image
 } from 'react-native';
 
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -94,10 +95,11 @@ export class App extends Component {
                     {this.state.dogInfo ?
                         this.state.dogInfo.map((item, index) => {
                             return(
-                                <View>
-                                    <Text>
-                                        {item}
-                                    </Text>
+                                <View key={"dogInfo_"+index}>
+                                    <Image
+                                        style={{width: 300, height: 300}}
+                                        source={{uri: item}}
+                                    />
                                 </View>
                             )
                         })
