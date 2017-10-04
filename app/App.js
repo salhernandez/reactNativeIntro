@@ -22,7 +22,7 @@ export class App extends Component {
         super(props)
 
         this.state = {
-            language: 'boxer',
+            language: 'poodle',
             textValue: '1',
             dogInfo: null
         }
@@ -54,15 +54,12 @@ export class App extends Component {
             <View>
                 <ScrollView>
                     <Text>
-                        Landing Page for IOS and Android
-                    </Text>
-
-                    <Text>
                         Make Selection
                     </Text>
                     <Picker
                         selectedValue={this.state.language}
                         onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+                        <Picker.Item label="poodle" value="poodle" />
                         <Picker.Item label="boxer" value="boxer" />
                         <Picker.Item label="akita" value="akita" />
                         <Picker.Item label="beagle" value="beagle" />
@@ -92,6 +89,9 @@ export class App extends Component {
                         </View>
                     </TouchableHighlight>
 
+
+                    <ScrollView
+                    horizontal={true}>
                     {this.state.dogInfo ?
                         this.state.dogInfo.map((item, index) => {
                             return(
@@ -107,6 +107,7 @@ export class App extends Component {
                         <Text>
                             THERE'S NO INFO FOR {this.state.language}
                         </Text>}
+                    </ScrollView>
                 </ScrollView>
             </View>
         );
