@@ -11,6 +11,8 @@ import {
     Picker,
 } from 'react-native';
 
+import RNFetchBlob from 'react-native-fetch-blob'
+
 export class App extends Component {
 
     constructor(props) {
@@ -23,6 +25,17 @@ export class App extends Component {
     }
 
     render() {
+        let task = RNFetchBlob.fetch('GET', 'https://jsonplaceholder.typicode.com/posts/');
+
+        task.then((response) => {
+            // .. success
+            console.log("data", response.data);
+        })
+            .catch((err) => {
+                console.log(err)
+            });
+
+
         return (
             <View>
                 <ScrollView>
