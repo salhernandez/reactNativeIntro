@@ -5,6 +5,7 @@ import React, {
 
 import {
     Text,
+    TextInput,
     View,
     ScrollView,
     Picker,
@@ -17,7 +18,7 @@ export class App extends Component {
 
         this.state = {
             language: 'java',
-            sliderValue: 1
+            textValue: 'placeholder'
         }
     }
 
@@ -42,6 +43,12 @@ export class App extends Component {
                         <Picker.Item label="todos" value="todos" />
                         <Picker.Item label="users" value="users" />
                     </Picker>
+
+                    <TextInput
+                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                        onChangeText={(text) => this.setState({textValue: text})}
+                        value={this.state.textValue}
+                    />
                 </ScrollView>
             </View>
         );
