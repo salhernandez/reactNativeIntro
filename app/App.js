@@ -81,7 +81,7 @@ export class App extends Component {
                         onChangeText={(text) => this.setState({textValue: text})}
                         value={this.state.textValue}
                     />
-                    <TouchableHighlight onPress={() => this.onPressLearnMore()}>
+                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.textValue)}>
                         <View>
                             <Text>
                                 MAKE CALL
