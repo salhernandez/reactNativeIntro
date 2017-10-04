@@ -21,7 +21,7 @@ export class App extends Component {
         super(props)
 
         this.state = {
-            language: 'java',
+            language: 'boxer',
             textValue: '1',
             dogInfo: null
         }
@@ -29,23 +29,26 @@ export class App extends Component {
         // this.onPressLearnMore = this.onPressLearnMore.bind(this)
     }
 
-    onPressLearnMore(){
-        console.log("look");
-        let task = RNFetchBlob.fetch('GET', 'https://dog.ceo/api/breeds/list/all');
+    onPressLearnMore(aValue){
+        console.log("THE VALUE PASSED IN: ", aValue);
+        //construct url
+        let url = "https://dog.ceo/api/breed/"+aValue+"/images";
+
+        let task = RNFetchBlob.fetch('GET', url);
         let temp = null;
 
         task.then((response) => {
             // .. success
             console.log("data", response.data);
             temp = response.data;
+
+            this.setState({
+                dogInfo: response.data
+            });
         })
             .catch((err) => {
                 console.log(err)
             });
-
-        this.setState({
-            dogInfo: "yarp"
-        });
     }
 
     render() {
@@ -70,7 +73,7 @@ export class App extends Component {
                         <Picker.Item label="pug" value="pug" />
                     </Picker>
 
-                    <TouchableHighlight onPress={() => this.onPressLearnMore()}>
+                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.language)}>
                         <View>
                             <Text>
                                 MAKE CALL
@@ -92,9 +95,11 @@ export class App extends Component {
                     </TouchableHighlight>
 
                     {this.state.dogInfo ? <Text>
-                        THERE'S DOG INFO
+                        THERE'S DOG INFO for {this.state.dogInfo}
                     </Text>:
-                        null}
+                        <Text>
+                            THERE'S NO INFO FOR {this.state.language}
+                        </Text>}
                 </ScrollView>
             </View>
         );
