@@ -5,7 +5,8 @@ import React, {
 
 import {
     Text,
-    View
+    View,
+    ScrollView
 } from 'react-native';
 
 export class App extends Component {
@@ -17,9 +18,11 @@ export class App extends Component {
     render() {
         return (
             <View>
-                <Text>
-                    Landing Page for IOS and Android
-                </Text>
+                <ScrollView>
+                    <Text>
+                        Landing Page for IOS and Android
+                    </Text>
+                </ScrollView>
             </View>
         );
     }
