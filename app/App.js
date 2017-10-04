@@ -49,12 +49,12 @@ export class App extends Component {
                     <Picker
                         selectedValue={this.state.language}
                         onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
-                        <Picker.Item label="posts" value="posts" />
-                        <Picker.Item label="comments" value="comments" />
-                        <Picker.Item label="albums" value="albums" />
-                        <Picker.Item label="photos" value="photos" />
-                        <Picker.Item label="todos" value="todos" />
-                        <Picker.Item label="users" value="users" />
+                        <Picker.Item label="boxer" value="boxer" />
+                        <Picker.Item label="akita" value="akita" />
+                        <Picker.Item label="beagle" value="beagle" />
+                        <Picker.Item label="doberman" value="doberman" />
+                        <Picker.Item label="husky" value="husky" />
+                        <Picker.Item label="pug" value="pug" />
                     </Picker>
 
                     <TextInput
