@@ -13,6 +13,10 @@ import {
 
 import App from './app/App'
 
+/**
+ * Main Screen for Android lands here, but we want both IOS and Android to show the same information.
+ * This will return the "App"
+ */
 export default class reactNativeIntro extends Component {
     render() {
         return (
