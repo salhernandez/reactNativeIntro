@@ -25,10 +25,7 @@ export class App extends Component {
             textValue: '1',
             dogInfo: null
         }
-
-        // this.onPressLearnMore = this.onPressLearnMore.bind(this)
     }
-
     onPressLearnMore(aValue){
         console.log("THE VALUE PASSED IN: ", aValue);
         //construct url
@@ -39,16 +36,16 @@ export class App extends Component {
 
         task.then((response) => {
             // .. success
-            console.log("data", response.data);
-            temp = response.data;
+            let temp = JSON.parse(response.data);
+            console.log("DATA: ", temp.message);
 
             this.setState({
-                dogInfo: response.data
+                dogInfo: temp.message
             });
-        })
-            .catch((err) => {
+
+        }).catch((err) => {
                 console.log(err)
-            });
+        });
     }
 
     render() {
@@ -94,9 +91,17 @@ export class App extends Component {
                         </View>
                     </TouchableHighlight>
 
-                    {this.state.dogInfo ? <Text>
-                        THERE'S DOG INFO for {this.state.dogInfo}
-                    </Text>:
+                    {this.state.dogInfo ?
+                        this.state.dogInfo.map((item, index) => {
+                            return(
+                                <View>
+                                    <Text>
+                                        {item}
+                                    </Text>
+                                </View>
+                            )
+                        })
+                        :
                         <Text>
                             THERE'S NO INFO FOR {this.state.language}
                         </Text>}
