@@ -8,7 +8,6 @@ import {
     View,
     ScrollView,
     Picker,
-    Slider
 } from 'react-native';
 
 export class App extends Component {
@@ -43,13 +42,6 @@ export class App extends Component {
                         <Picker.Item label="todos" value="todos" />
                         <Picker.Item label="users" value="users" />
                     </Picker>
-
-                    <Text>
-                        {this.state.sliderValue}
-                    </Text>
-                    <Slider
-                        onValueChange={(value) => this.setState({sliderValue: value})} />
-
                 </ScrollView>
             </View>
         );
