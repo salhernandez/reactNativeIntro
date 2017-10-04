@@ -18,7 +18,7 @@ export class App extends Component {
 
         this.state = {
             language: 'java',
-            textValue: 'placeholder'
+            textValue: '1'
         }
     }
 
