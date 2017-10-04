@@ -6,13 +6,18 @@ import React, {
 import {
     Text,
     View,
-    ScrollView
+    ScrollView,
+    Picker
 } from 'react-native';
 
 export class App extends Component {
 
     constructor(props) {
         super(props)
+
+        this.state = {
+            language: 'java'
+        }
     }
 
     render() {
@@ -22,6 +27,17 @@ export class App extends Component {
                     <Text>
                         Landing Page for IOS and Android
                     </Text>
+
+                    <Text>
+                        Make Selection
+                    </Text>
+                    <Picker
+                        selectedValue={this.state.language}
+                        onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+                        <Picker.Item label="Java" value="java" />
+                        <Picker.Item label="JavaScript" value="js" />
+                    </Picker>
+
                 </ScrollView>
             </View>
         );
