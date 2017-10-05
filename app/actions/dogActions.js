@@ -17,8 +17,7 @@ export const setDogPictures = (dogPictures) => {
 
 /**
  * Clears the dog pictures from the store
- * @param dogPictures
- * @returns {{type: string, dogPictures: *}}
+ * @returns {{type: string}}
  */
 export const clearDogPictures = () => {
     return {
