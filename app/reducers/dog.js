@@ -2,7 +2,7 @@
 
 const initialState = {
     allDogInfo: "STORE PLACEHOLDER VALUE",
-    dogPictures: {}
+    dogPictures: null
 }
 
 const dog = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const dog = (state = initialState, action) => {
             return {
                 ...state,
                 allDogInfo: {},
-                dogPictures: {}
+                dogPictures: null
             }
         case 'SET_DOG_PICTURES':
             return {
@@ -21,7 +21,7 @@ const dog = (state = initialState, action) => {
         case 'CLEAR_DOG_PICTURES':
             return {
                 ...state,
-                dogPictures: {}
+                dogPictures: null
             }
         default:
             return state
