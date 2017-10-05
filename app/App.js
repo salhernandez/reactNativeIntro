@@ -25,7 +25,7 @@ export class App extends Component {
 
         this.state = {
             language: 'poodle',
-            textValue: '1'
+            textValue: 'boxer'
         }
     }
     onPressLearnMore(aValue){
