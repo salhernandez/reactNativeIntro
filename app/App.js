@@ -25,12 +25,12 @@ export class App extends Component {
 
         this.state = {
             language: 'poodle',
-            textValue: '1',
-            dogInfo: null
+            textValue: '1'
         }
     }
     onPressLearnMore(aValue){
         console.log("THE VALUE PASSED IN: ", aValue);
+        this.props.actions.getDogPictures(aValue);
     }
 
     render() {
@@ -82,10 +82,10 @@ export class App extends Component {
 
                         {/*conditional rendering: if there is dogInfo, it shows all the images, otherwise if dogInfo
                         is null or false, it shows that there is no info*/}
-                    {this.state.dogInfo ?
-                        this.state.dogInfo.map((item, index) => {
+                    {this.props.dogPictures ?
+                        this.props.dogPictures.map((item, index) => {
                             return(
-                                <View key={"dogInfo_"+index}>
+                                <View key={"dogPictures_"+index}>
                                     <Image
                                         style={{width: 300, height: 300}}
                                         source={{uri: item}}
@@ -107,6 +107,7 @@ export class App extends Component {
 function mapStateToProps(state,component) {
     return {
         dogs: state.dogs,
+        dogPictures: state.dogs.dogPictures
     }
 }
 

@@ -7,11 +7,8 @@ export const setDogPictures = (dogPictures) => {
     }
 }
 
-export const getDogPictures = (userData,rememberMe) => {
-
-    let url = "https://dog.ceo/api/breed/"+aValue+"/images";
-    let temp = null;
-
+export const getDogPictures = (breed) => {
+    let url = "https://dog.ceo/api/breed/"+breed+"/images";
     return dispatch =>
         //construct url
 
