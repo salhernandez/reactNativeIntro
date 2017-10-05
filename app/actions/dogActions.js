@@ -23,6 +23,7 @@ export const getDogPictures = (userData,rememberMe) => {
         let temp = JSON.parse(response.data);
         console.log("DATA: ", temp.message);
 
+        //stores the info in the store
         dispatch(setDogPictures(temp.message));
 
     }).catch((err) => {
