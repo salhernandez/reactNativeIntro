@@ -1,7 +1,8 @@
 // Don't mutate the state, return new one
 
 const initialState = {
-    allDogInfo: "STORE PLACEHOLDER VALUE"
+    allDogInfo: "STORE PLACEHOLDER VALUE",
+    dogPictures: {}
 }
 
 const dogs = (state = initialState, action) => {
@@ -9,7 +10,18 @@ const dogs = (state = initialState, action) => {
         case 'INIT_DOGS':
             return {
                 ...state,
-                allDogInfo: {}
+                allDogInfo: {},
+                dogPictures: {}
+            }
+        case 'SET_DOG_PICTURES':
+            return {
+                ...state,
+                dogPictures: action.dogPictures
+            }
+        case 'CLEAR_DOG_PICTURES':
+            return {
+                ...state,
+                dogPictures: {}
             }
         default:
             return state
