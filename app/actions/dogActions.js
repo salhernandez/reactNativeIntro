@@ -1,11 +1,9 @@
 import RNFetchBlob from 'react-native-fetch-blob'
 
-export const setUser = (user,userData,persisted) => {
+export const setDogPictures = (dogPictures) => {
     return {
-        type: 'SET_USER',
-        user,
-        userData,
-        persisted
+        type: 'SET_DOG_PICTURES',
+        dogPictures
     }
 }
 
@@ -24,6 +22,8 @@ export const getDogPictures = (userData,rememberMe) => {
         //converts the response from string to JSON
         let temp = JSON.parse(response.data);
         console.log("DATA: ", temp.message);
+
+        dispatch(setDogPictures(temp.message));
 
     }).catch((err) => {
         //on failure

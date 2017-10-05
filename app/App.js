@@ -14,8 +14,9 @@ import {
     Image
 } from 'react-native';
 
-import RNFetchBlob from 'react-native-fetch-blob'
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as dogActions from './actions/dogActions'
 
 export class App extends Component {
 
@@ -33,7 +34,6 @@ export class App extends Component {
     }
 
     render() {
-
         console.log("DATA FROM THE STORE: ", this.props.dogs);
         return (
             <View>
@@ -110,4 +110,8 @@ function mapStateToProps(state,component) {
     }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps,
+    (dispatch) => ({
+        actions: bindActionCreators({...dogActions}, dispatch)
+    })
+)(App)

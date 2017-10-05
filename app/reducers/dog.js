@@ -5,7 +5,7 @@ const initialState = {
     dogPictures: {}
 }
 
-const dogs = (state = initialState, action) => {
+const dog = (state = initialState, action) => {
     switch (action.type) {
         case 'INIT_DOGS':
             return {
@@ -27,4 +27,4 @@ const dogs = (state = initialState, action) => {
             return state
     }
 }
-export default dogs
+export default dog

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 
-import dogs from './dogs'
+import dogs from './dog'
 
 const rootReducer = combineReducers({
     dogs
