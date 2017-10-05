@@ -1,8 +1,15 @@
 import RNFetchBlob from 'react-native-fetch-blob'
 
+/**
+ * Sends off the dog pictures to the reducer
+ * @param dogPictures
+ * @returns {{type: string, dogPictures: *}}
+ */
 export const setDogPictures = (dogPictures) => {
     return {
+        //reducer
         type: 'SET_DOG_PICTURES',
+        //data
         dogPictures
     }
 }
