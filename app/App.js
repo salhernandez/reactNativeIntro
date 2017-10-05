@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import RNFetchBlob from 'react-native-fetch-blob'
+import {connect} from 'react-redux'
 
 export class App extends Component {
 
@@ -61,6 +62,8 @@ export class App extends Component {
     }
 
     render() {
+
+        console.log("DATA FROM THE STORE: ", this.props.dogs);
         return (
             <View>
                 <ScrollView>
@@ -130,4 +133,10 @@ export class App extends Component {
     }
 }
 
-export default App
+function mapStateToProps(state,component) {
+    return {
+        dogs: state.dogs,
+    }
+}
+
+export default connect(mapStateToProps)(App);

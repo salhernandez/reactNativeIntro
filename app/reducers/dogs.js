@@ -1,7 +1,7 @@
 // Don't mutate the state, return new one
 
 const initialState = {
-    allDogInfo: {}
+    allDogInfo: "STORE PLACEHOLDER VALUE"
 }
 
 const dogs = (state = initialState, action) => {
