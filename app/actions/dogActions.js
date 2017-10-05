@@ -14,6 +14,19 @@ export const setDogPictures = (dogPictures) => {
     }
 }
 
+
+/**
+ * Clears the dog pictures from the store
+ * @param dogPictures
+ * @returns {{type: string, dogPictures: *}}
+ */
+export const clearDogPictures = () => {
+    return {
+        //reducer
+        type: 'CLEAR_DOG_PICTURES'
+    }
+}
+
 export const getDogPictures = (breed) => {
     let url = "https://dog.ceo/api/breed/"+breed+"/images";
     return dispatch =>
@@ -22,17 +35,22 @@ export const getDogPictures = (breed) => {
     //baic setup to make API call
     RNFetchBlob.fetch('GET', url).then((response) => {
         // on success
+        try {
+            //converts the response from string to JSON
+            let temp = JSON.parse(response.data);
+            console.log("DATA: ", temp.message);
 
-        //converts the response from string to JSON
-        let temp = JSON.parse(response.data);
-        console.log("DATA: ", temp.message);
-
-        //stores the info in the store
-        dispatch(setDogPictures(temp.message));
+            //stores the info in the store
+            dispatch(setDogPictures(temp.message));
+        }
+        catch(e){
+            dispatch(clearDogPictures());
+        }
 
     }).catch((err) => {
-        //on failure
+        //on fail
         console.log(err);
+        dispatch(clearDogPictures());
     });
 
 }
