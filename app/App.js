@@ -30,35 +30,6 @@ export class App extends Component {
     }
     onPressLearnMore(aValue){
         console.log("THE VALUE PASSED IN: ", aValue);
-        //construct url
-        let url = "https://dog.ceo/api/breed/"+aValue+"/images";
-        let temp = null;
-
-        //baic setup to make API call
-        let task = RNFetchBlob.fetch('GET', url);
-
-        //make the API call
-        task.then((response) => {
-            // on success
-
-            //converts the response from string to JSON
-            let temp = JSON.parse(response.data);
-            // console.log("DATA: ", temp.message);
-
-            //updates the dogInfo state
-            this.setState({
-                dogInfo: temp.message
-            });
-
-        }).catch((err) => {
-            //on failure
-            console.log(err);
-
-            //updates the dogInfo state
-            this.setState({
-                dogInfo: null
-            });
-        });
     }
 
     render() {
