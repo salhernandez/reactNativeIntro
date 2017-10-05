@@ -21,7 +21,7 @@ import * as dogActions from './actions/dogActions'
 export class App extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             language: 'poodle',
