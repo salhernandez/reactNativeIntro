@@ -24,7 +24,7 @@ export class App extends Component {
         super(props);
 
         this.state = {
-            language: 'poodle',
+            dropDownValue: 'poodle',
             textValue: 'boxer'
         }
     }
@@ -43,8 +43,8 @@ export class App extends Component {
                     </Text>
 
                     <Picker
-                        selectedValue={this.state.language}
-                        onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+                        selectedValue={this.state.dropDownValue}
+                        onValueChange={(itemValue, itemIndex) => this.setState({dropDownValue: itemValue})}>
                         <Picker.Item label="poodle" value="poodle" />
                         <Picker.Item label="boxer" value="boxer" />
                         <Picker.Item label="akita" value="akita" />
@@ -54,7 +54,7 @@ export class App extends Component {
                         <Picker.Item label="pug" value="pug" />
                     </Picker>
 
-                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.language)}>
+                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.dropDownValue)}>
                         <View>
                             <Text>
                                 SHOW DOGS
@@ -95,7 +95,7 @@ export class App extends Component {
                         })
                         :
                         <Text>
-                            THERE'S NO INFO FOR {this.state.language}
+                            THERE'S NO INFO FOR {this.state.dropDownValue}
                         </Text>}
                     </ScrollView>
                 </ScrollView>
