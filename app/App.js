@@ -4,13 +4,12 @@ import React, {
 } from 'react';
 
 import {
+    Alert,
     StyleSheet,
     Text,
-    TextInput,
     View,
     ScrollView,
     Picker,
-    Button,
     TouchableHighlight,
     Image
 } from 'react-native';
@@ -62,7 +61,16 @@ export class App extends Component {
     }
 
     onMoreInfo(){
-        console.log("onMoreinfo");
+        // Works on both iOS and Android
+        Alert.alert(
+            'Alert',
+            'Do you like '+this.state.dropDownValue+"'s?",
+            [
+                {text: 'no', style: 'cancel'},
+                {text: 'yes'},
+            ],
+            { cancelable: false }
+        )
     }
 
     render() {
@@ -135,7 +143,7 @@ export class App extends Component {
                                         {/*<View style={theme.cardMenuStyle}>{menu}</View>*/}
                                         <TouchableHighlight onPress={() => this.onMoreInfo()}>
                                             <View style={theme.cardActionStyle}>
-                                                <Text>My Action</Text>
+                                                <Text>More</Text>
                                             </View>
                                         </TouchableHighlight>
                                     </View>
