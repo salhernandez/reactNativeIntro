@@ -66,7 +66,7 @@ export class App extends Component {
         // Works on both iOS and Android
         Alert.alert(
             'Alert',
-            'Do you like '+this.state.dropDownValue+"'s?",
+            'Do you like dogs?',
             [
                 {text: 'no', style: 'cancel'},
                 {text: 'yes'},
@@ -123,7 +123,8 @@ export class App extends Component {
 
 
                     <ScrollView
-                    horizontal={true}>
+                    horizontal={true}
+                    justifyContent={"center"}>
 
                         {/*conditional rendering: if there is dogInfo, it shows all the images, otherwise if dogInfo
                         is null or false, it shows that there is no info*/}
@@ -156,7 +157,7 @@ export class App extends Component {
 
                         this.props.isWaitingForPics ? <MKSpinner/>:
                             <Text>
-                            THERE ARE NO PICTURES FOR {this.state.dropDownValue}
+                            THERE ARE NO PICTURES
                         </Text>
 
                         }
