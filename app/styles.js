@@ -70,6 +70,10 @@ module.exports = StyleSheet.create({
         height: 48,  // have to do it on iOS
         marginTop: 10,
     },
+    fullPageWrapper: {
+        backgroundColor: colors.lighter,
+        flex: 1,
+    },
 });
 
 module.exports.colors = colors;

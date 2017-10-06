@@ -61,7 +61,7 @@ export class App extends Component {
     render() {
         console.log("DATA FROM THE STORE: ", this.props.dogs);
         return (
-            <View>
+            <View style={styles.fullPageWrapper} >
                 <ScrollView>
                     <Text>
                         Make Selection
