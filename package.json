@@ -13,7 +13,8 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-persist": "^4.10.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "react-native-material-kit": "git+ssh://git@github.com/brunsy/react-native-material-kit"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",
