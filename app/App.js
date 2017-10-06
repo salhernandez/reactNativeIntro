@@ -22,8 +22,11 @@ import * as dogActions from './actions/dogActions'
 const appStyles = require('./styles');
 
 import {
-    MKTextField
+    MKTextField,
+    getTheme
 } from 'react-native-material-kit';
+
+const theme = getTheme();
 
 const styles = Object.assign({}, appStyles, StyleSheet.create({
     col: {
@@ -56,6 +59,10 @@ export class App extends Component {
     onPressLearnMore(aValue){
         console.log("THE VALUE PASSED IN: ", aValue);
         this.props.actions.getDogPictures(aValue);
+    }
+
+    onMoreInfo(){
+        console.log("onMoreinfo");
     }
 
     render() {
@@ -113,12 +120,25 @@ export class App extends Component {
                     {this.props.dogPictures ?
                         this.props.dogPictures.map((item, index) => {
                             return(
-                                <View key={"dogPictures_"+index}>
-                                    <Image
-                                        style={{width: 300, height: 300}}
-                                        source={{uri: item}}
-                                    />
-                                </View>
+                                    <View key={"dogPictures_"+index} style={[theme.cardStyle, {width: 300, height: 300}]}>
+                                        <Image source={{uri : item}} style={theme.cardImageStyle}/>
+                                        <View  // TextView padding not handled well on Android https://github.com/facebook/react-native/issues/3233
+                                            style={{
+                                                padding : 15,
+                                            }}
+                                        >
+                                            <Text style={[theme.cardContentStyle, {padding:0}]}>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Mauris sagittis pellentesque lacus eleifend lacinia...
+                                            </Text>
+                                        </View>
+                                        {/*<View style={theme.cardMenuStyle}>{menu}</View>*/}
+                                        <TouchableHighlight onPress={() => this.onMoreInfo()}>
+                                            <View style={theme.cardActionStyle}>
+                                                <Text>My Action</Text>
+                                            </View>
+                                        </TouchableHighlight>
+                                    </View>
                             )
                         })
                         :
