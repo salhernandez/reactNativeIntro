@@ -36,7 +36,7 @@ export class App extends Component {
 
         this.state = {
             dropDownValue: 'poodle',
-            textValue: 'boxer'
+            textValue: ''
         }
     }
     onPressLearnMore(aValue){
@@ -97,7 +97,7 @@ export class App extends Component {
 
                     <MKTextField
                         textInputStyle={{flex: 1}}
-                        placeholder='Text…'
+                        placeholder={'Breed'}
                         style={styles.textfield}
                         onTextChange={(value)=> this.setState({
                             textValue: value
@@ -154,9 +154,10 @@ export class App extends Component {
                         :
 
                         this.props.isWaitingForPics ? <MKSpinner/>:
-                            <Text>
-                            THERE ARE NO PICTURES
-                        </Text>
+                            <Image
+                                source={require('../assets/imageNotFound.png')}
+                                style={{width: 300, height: 300}}
+                            />
 
                         }
                     </ScrollView>
