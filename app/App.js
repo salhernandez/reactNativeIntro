@@ -88,11 +88,10 @@ export class App extends Component {
                         shadowColor="black"
                         onPress={() => {
                             this.onPressLearnMore(this.state.dropDownValue)
-                        }}
-                    >
+                        }}>
                         <Text pointerEvents="none"
                               style={{color: 'white', fontWeight: 'bold',}}>
-                            RAISED BUTTON
+                            SEARCH
                         </Text>
                     </MKButton>
 
@@ -105,13 +104,20 @@ export class App extends Component {
                         })}
                     />
 
-                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.textValue)}>
-                        <View>
-                            <Text>
-                                SHOW DOGS
-                            </Text>
-                        </View>
-                    </TouchableHighlight>
+                    <MKButton
+                        backgroundColor={styles.colors.primary}
+                        shadowRadius={2}
+                        shadowOffset={{width:0, height:2}}
+                        shadowOpacity={.7}
+                        shadowColor="black"
+                        onPress={() => {
+                            this.onPressLearnMore(this.state.textValue)
+                        }}>
+                        <Text pointerEvents="none"
+                              style={{color: 'white', fontWeight: 'bold',}}>
+                            SEARCH
+                        </Text>
+                    </MKButton>
 
 
                     <ScrollView
