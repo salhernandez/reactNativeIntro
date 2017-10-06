@@ -87,10 +87,13 @@ export class App extends Component {
                         </View>
                     </TouchableHighlight>
 
-                    <TextInput
-                        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                        onChangeText={(text) => this.setState({textValue: text})}
-                        value={this.state.textValue}
+                    <MKTextField
+                        textInputStyle={{flex: 1}}
+                        placeholder='Text…'
+                        style={styles.textfield}
+                        onTextChange={(value)=> this.setState({
+                            textValue: value
+                        })}
                     />
 
                     <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.textValue)}>
@@ -123,13 +126,6 @@ export class App extends Component {
                             THERE'S NO INFO FOR {this.state.dropDownValue}
                         </Text>}
                     </ScrollView>
-
-                    <MKTextField
-                        textInputStyle={{flex: 1}}
-                        placeholder='Text…'
-                        style={styles.textfield}
-                        onTextChange={(value)=> console.log(value)}
-                    />
                 </ScrollView>
             </View>
         );
