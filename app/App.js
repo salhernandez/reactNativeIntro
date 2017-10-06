@@ -18,33 +18,16 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as dogActions from './actions/dogActions'
 
-const appStyles = require('./styles');
+import styles from './styles.js'
 
 import {
     MKTextField,
     MKSpinner,
+    MKButton,
     getTheme
 } from 'react-native-material-kit';
 
 const theme = getTheme();
-
-const styles = Object.assign({}, appStyles, StyleSheet.create({
-    col: {
-        flex: 1,
-        flexDirection: 'column',
-        // alignItems: 'center', // this will prevent TFs from stretching horizontal
-        marginLeft: 7, marginRight: 7,
-        // backgroundColor: MKColor.Lime,
-    },
-    textfield: {
-        height: 28,  // have to do it on iOS
-        marginTop: 32,
-    },
-    textfieldWithFloatingLabel: {
-        height: 48,  // have to do it on iOS
-        marginTop: 10,
-    },
-}));
 
 export class App extends Component {
 
@@ -96,13 +79,22 @@ export class App extends Component {
                         <Picker.Item label="pug" value="pug" />
                     </Picker>
 
-                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.dropDownValue)}>
-                        <View>
-                            <Text>
-                                SHOW DOGS
-                            </Text>
-                        </View>
-                    </TouchableHighlight>
+
+                    <MKButton
+                        backgroundColor={styles.colors.primary}
+                        shadowRadius={2}
+                        shadowOffset={{width:0, height:2}}
+                        shadowOpacity={.7}
+                        shadowColor="black"
+                        onPress={() => {
+                            this.onPressLearnMore(this.state.dropDownValue)
+                        }}
+                    >
+                        <Text pointerEvents="none"
+                              style={{color: 'white', fontWeight: 'bold',}}>
+                            RAISED BUTTON
+                        </Text>
+                    </MKButton>
 
                     <MKTextField
                         textInputStyle={{flex: 1}}
