@@ -124,42 +124,48 @@ export class App extends Component {
                     horizontal={true}
                     justifyContent={"center"}>
 
-                        {/*conditional rendering: if there is dogInfo, it shows all the images, otherwise if dogInfo
-                        is null or false, it shows that there is no info*/}
-                    {this.props.dogPictures ?
-                        this.props.dogPictures.map((item, index) => {
-                            return(
-                                    <View key={"dogPictures_"+index} style={[theme.cardStyle, {width: 300, height: 300}]}>
-                                        <Image source={{uri : item}} style={theme.cardImageStyle}/>
-                                        <View  // TextView padding not handled well on Android https://github.com/facebook/react-native/issues/3233
-                                            style={{
-                                                padding : 15,
-                                            }}>
-                                            <Text style={[theme.cardContentStyle, {padding:0}]}>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Mauris sagittis pellentesque lacus eleifend lacinia...
-                                            </Text>
-                                        </View>
+                        {/*if it is waiting for the pics
+                                show spinner
+                           else
+                                if dog pics exist
+                                    show pics
+                                 else
+                                    show the image with the error*/}
 
-                                        <TouchableHighlight onPress={() => this.onMoreInfo()}>
-                                            <View style={theme.cardActionStyle}>
-                                                <Text>More</Text>
+                        {this.props.isWaitingForPics ?
+                            <MKSpinner/>
+                            :
+
+                                this.props.dogPictures ?
+                                    this.props.dogPictures.map((item, index) => {
+                                        return(
+                                            <View key={"dogPictures_"+index} style={[theme.cardStyle, {width: 300, height: 300}]}>
+                                                <Image source={{uri : item}} style={theme.cardImageStyle}/>
+                                                <View  // TextView padding not handled well on Android https://github.com/facebook/react-native/issues/3233
+                                                    style={{
+                                                        padding : 15,
+                                                    }}>
+                                                    <Text style={[theme.cardContentStyle, {padding:0}]}>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                        Mauris sagittis pellentesque lacus eleifend lacinia...
+                                                    </Text>
+                                                </View>
+
+                                                <TouchableHighlight onPress={() => this.onMoreInfo()}>
+                                                    <View style={theme.cardActionStyle}>
+                                                        <Text>More</Text>
+                                                    </View>
+                                                </TouchableHighlight>
+
                                             </View>
-                                        </TouchableHighlight>
-
-                                    </View>
-                            )
-                        })
-
-                        :
-
-                        this.props.isWaitingForPics ? <MKSpinner/>:
-                            <Image
-                                source={require('../assets/imageNotFound.png')}
-                                style={{width: 300, height: 300}}
-                            />
-
-                        }
+                                        )
+                                    })
+                                :
+                                    <Image
+                                        source={require('../assets/imageNotFound.png')}
+                                        style={{width: 300, height: 300}}
+                                    />
+                                }
                     </ScrollView>
                 </ScrollView>
             </View>
