@@ -128,6 +128,7 @@ export class App extends Component {
                         textInputStyle={{flex: 1}}
                         placeholder='Text…'
                         style={styles.textfield}
+                        onTextChange={(value)=> console.log(value)}
                     />
                 </ScrollView>
             </View>
