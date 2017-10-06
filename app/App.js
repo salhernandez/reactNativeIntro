@@ -22,6 +22,7 @@ const appStyles = require('./styles');
 
 import {
     MKTextField,
+    MKSpinner,
     getTheme
 } from 'react-native-material-kit';
 
@@ -133,25 +134,25 @@ export class App extends Component {
                                         <View  // TextView padding not handled well on Android https://github.com/facebook/react-native/issues/3233
                                             style={{
                                                 padding : 15,
-                                            }}
-                                        >
+                                            }}>
                                             <Text style={[theme.cardContentStyle, {padding:0}]}>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                                 Mauris sagittis pellentesque lacus eleifend lacinia...
                                             </Text>
                                         </View>
-                                        {/*<View style={theme.cardMenuStyle}>{menu}</View>*/}
+
                                         <TouchableHighlight onPress={() => this.onMoreInfo()}>
                                             <View style={theme.cardActionStyle}>
                                                 <Text>More</Text>
                                             </View>
                                         </TouchableHighlight>
+
                                     </View>
                             )
                         })
                         :
                         <Text>
-                            THERE'S NO INFO FOR {this.state.dropDownValue}
+                            THERE ARE NO PICTURES FOR {this.state.dropDownValue}
                         </Text>}
                     </ScrollView>
                 </ScrollView>
