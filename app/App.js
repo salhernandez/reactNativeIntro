@@ -43,12 +43,6 @@ const styles = Object.assign({}, appStyles, StyleSheet.create({
     },
 }));
 
-const Textfield = MKTextField.textfield()
-    .withPlaceholder('Text...')
-    .withStyle(styles.textfield)
-    .withTextInputStyle({flex: 1})
-    .build();
-
 export class App extends Component {
 
     constructor(props) {
@@ -130,7 +124,11 @@ export class App extends Component {
                         </Text>}
                     </ScrollView>
 
-                    <Textfield/>
+                    <MKTextField
+                        textInputStyle={{flex: 1}}
+                        placeholder='Text…'
+                        style={styles.textfield}
+                    />
                 </ScrollView>
             </View>
         );
