@@ -58,6 +58,7 @@ export class App extends Component {
     }
     onPressLearnMore(aValue){
         console.log("THE VALUE PASSED IN: ", aValue);
+        this.props.actions.setWaitingForPicsTrue();
         this.props.actions.getDogPictures(aValue);
     }
 
@@ -150,10 +151,15 @@ export class App extends Component {
                                     </View>
                             )
                         })
+
                         :
-                        <Text>
+
+                        this.props.isWaitingForPics ? <MKSpinner/>:
+                            <Text>
                             THERE ARE NO PICTURES FOR {this.state.dropDownValue}
-                        </Text>}
+                        </Text>
+
+                        }
                     </ScrollView>
                 </ScrollView>
             </View>
@@ -164,7 +170,8 @@ export class App extends Component {
 function mapStateToProps(state,component) {
     return {
         dogs: state.dogs,
-        dogPictures: state.dogs.dogPictures
+        dogPictures: state.dogs.dogPictures,
+        isWaitingForPics: state.dogs.isWaitingForPics
     }
 }
 

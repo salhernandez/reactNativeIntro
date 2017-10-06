@@ -26,6 +26,20 @@ export const clearDogPictures = () => {
     }
 }
 
+export const setWaitingForPicsTrue = () => {
+    return {
+        //reducer
+        type: 'SET_WAITING_FOR_PICS_TRUE'
+    }
+}
+
+export const setWaitingForPicsFalse = () => {
+    return {
+        //reducer
+        type: 'SET_WAITING_FOR_PICS_FALSE'
+    }
+}
+
 export const getDogPictures = (breed) => {
     let url = "https://dog.ceo/api/breed/"+breed+"/images";
     return dispatch =>
@@ -41,6 +55,9 @@ export const getDogPictures = (breed) => {
 
             //stores the info in the store
             dispatch(setDogPictures(temp.message));
+
+            //set it to false only if the call was successful
+            dispatch(setWaitingForPicsFalse());
         }
         catch(e){
             dispatch(clearDogPictures());

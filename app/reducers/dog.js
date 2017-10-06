@@ -2,7 +2,8 @@
 
 const initialState = {
     allDogInfo: "STORE PLACEHOLDER VALUE",
-    dogPictures: null
+    dogPictures: null,
+    isWaitingForPics: null
 }
 
 const dog = (state = initialState, action) => {
@@ -21,7 +22,18 @@ const dog = (state = initialState, action) => {
         case 'CLEAR_DOG_PICTURES':
             return {
                 ...state,
-                dogPictures: null
+                dogPictures: null,
+                isWaitingForPics:null
+            }
+        case 'SET_WAITING_FOR_PICS_TRUE':
+            return {
+                ...state,
+                isWaitingForPics: true
+            }
+        case 'SET_WAITING_FOR_PICS_FALSE':
+            return {
+                ...state,
+                isWaitingForPics: false
             }
         default:
             return state
