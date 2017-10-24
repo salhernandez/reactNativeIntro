@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux'
 
-import dogs from './dog'
+import gifs from './gif'
 
 const rootReducer = combineReducers({
-    dogs
+  
+    gifs
 })
 
 export default rootReducer

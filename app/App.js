@@ -11,12 +11,13 @@ import {
     Picker,
     Button,
     TouchableHighlight,
-    Image
+    Image,
+    ListView
 } from 'react-native';
 
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as dogActions from './actions/dogActions'
+import * as gifActions from './actions/gifActions'
 
 export class App extends Component {
 
@@ -24,43 +25,19 @@ export class App extends Component {
         super(props);
 
         this.state = {
-            dropDownValue: 'poodle',
-            textValue: 'boxer'
+            textValue: 'rock'
         }
     }
-    onPressLearnMore(aValue){
-        console.log("THE VALUE PASSED IN: ", aValue);
-        this.props.actions.getDogPictures(aValue);
+    onPressShow(aValue){
+      console.log("THE VALUE PASSED IN: ", aValue);
+      this.props.actions.getGifs(aValue);
     }
 
     render() {
-        console.log("DATA FROM THE STORE: ", this.props.dogs);
+        console.log("DATA FROM THE STORE: ", this.props.gifPics);
         return (
             <View>
                 <ScrollView>
-                    <Text>
-                        Make Selection
-                    </Text>
-
-                    <Picker
-                        selectedValue={this.state.dropDownValue}
-                        onValueChange={(itemValue, itemIndex) => this.setState({dropDownValue: itemValue})}>
-                        <Picker.Item label="poodle" value="poodle" />
-                        <Picker.Item label="boxer" value="boxer" />
-                        <Picker.Item label="akita" value="akita" />
-                        <Picker.Item label="beagle" value="beagle" />
-                        <Picker.Item label="doberman" value="doberman" />
-                        <Picker.Item label="husky" value="husky" />
-                        <Picker.Item label="pug" value="pug" />
-                    </Picker>
-
-                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.dropDownValue)}>
-                        <View>
-                            <Text>
-                                SHOW DOGS
-                            </Text>
-                        </View>
-                    </TouchableHighlight>
 
                     <TextInput
                         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
@@ -68,26 +45,27 @@ export class App extends Component {
                         value={this.state.textValue}
                     />
 
-                    <TouchableHighlight onPress={() => this.onPressLearnMore(this.state.textValue)}>
+                    <TouchableHighlight onPress={() => this.onPressShow(this.state.textValue)}>
                         <View>
                             <Text>
-                                SHOW DOGS
+                                SHOW GIFS
                             </Text>
                         </View>
                     </TouchableHighlight>
 
 
                     <ScrollView
-                    horizontal={true}>
+                    horizontal={false}>
 
-                        {/*conditional rendering: if there is dogInfo, it shows all the images, otherwise if dogInfo
+                        {/*conditional rendering: if there is gifImages, it shows all the images, otherwise if gifImages
                         is null or false, it shows that there is no info*/}
-                    {this.props.dogPictures ?
-                        this.props.dogPictures.map((item, index) => {
+                    {this.props.gifPics ?
+                        this.props.gifPics.map((item, index) => {
                             return(
-                                <View key={"dogPictures_"+index}>
+
+                                <View key={"gifPics_"+index}>
                                     <Image
-                                        style={{width: 300, height: 300}}
+                                        style={{ flex: 1,width: 300,height: 300,resizeMode: 'contain',borderColor: 'black'}}
                                         source={{uri: item}}
                                     />
                                 </View>
@@ -95,10 +73,12 @@ export class App extends Component {
                         })
                         :
                         <Text>
-                            THERE'S NO INFO FOR {this.state.dropDownValue}
-                        </Text>}
+                            NO INFO TO SHOW
+                        </Text>
+                      }
                     </ScrollView>
                 </ScrollView>
+
             </View>
         );
     }
@@ -106,13 +86,14 @@ export class App extends Component {
 
 function mapStateToProps(state,component) {
     return {
-        dogs: state.dogs,
-        dogPictures: state.dogs.dogPictures
+        gifs: state.gifs,
+        gifPics: state.gifs.gifPics
+
     }
 }
 
 export default connect(mapStateToProps,
     (dispatch) => ({
-        actions: bindActionCreators({...dogActions}, dispatch)
+        actions: bindActionCreators({...gifActions}, dispatch)
     })
 )(App)
